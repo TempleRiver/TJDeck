@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "net.totoraj.tjdeck"
@@ -17,17 +17,16 @@ android {
 
     signingConfigs {
         release {
-            keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
-            keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
-            storeFile System.getenv("BITRISEIO_ANDROID_KEYSTORE_URL")
-            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
+            storeFile file(System.getenv("HOME") + "/keystores/release.jks")
+            storePassword System.getenv()["BITRISEIO_ANDROID_KEYSTORE_PASSWORD"]
+            keyAlias System.getenv()["BITRISEIO_ANDROID_KEYSTORE_ALIAS"]
+            keyPassword System.getenv()["BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD"]
         }
         debug {
             storeFile file("../debug.keystore")
             storePassword "android"
             keyAlias "androiddebugkey"
             keyPassword "android"
-            v2SigningEnabled true
         }
     }
 
@@ -66,5 +65,5 @@ dependencies {
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.61"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.61"
 }
