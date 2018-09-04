@@ -1,8 +1,8 @@
 signingConfigs {
     release {
-        storeFile file('./release.keystore')
-        storePassword 'releaseStorePassword'
-        keyAlias 'releaseKeyAlias'
-        keyPassword 'releaseKeyPassword'
+        keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
+        keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+        storeFile file(System.getenv("HOME") + "/keystores/release.jks")
+        storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
     }
 }

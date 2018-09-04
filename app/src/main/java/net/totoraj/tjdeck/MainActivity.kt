@@ -12,19 +12,16 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.text.format.DateFormat
 import android.util.Log
-import android.view.*
-import android.webkit.ValueCallback
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.webkit.*
 import android.widget.FrameLayout
-
 import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.Date
+import java.util.*
 import java.util.regex.Pattern
 
 class MainActivity : Activity() {
@@ -49,10 +46,10 @@ class MainActivity : Activity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         drawerLayout = findViewById(R.id.drawer_layout)
-        (findViewById<NavigationView>(R.id.navigationView)).apply{
+        (findViewById<NavigationView>(R.id.navigationView)).apply {
             setNavigationItemSelectedListener {
-                when(it.itemId){
-                    R.id.menu_show_tjdeck_option -> mWebView.evaluateJavascript("tj_deck.showOptionPanel()",null)
+                when (it.itemId) {
+                    R.id.menu_show_tjdeck_option -> mWebView.evaluateJavascript("tj_deck.showOptionPanel()", null)
                 }
                 drawerLayout.closeDrawer(GravityCompat.START)
                 true
